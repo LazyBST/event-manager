@@ -1,0 +1,39 @@
+{
+  "name": "@original4sure/event-manager-lib",
+  "version": "1.0.0",
+  "description": "Event manger lib",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "clean": "rimraf dist/",
+    "eslint": "eslint .",
+    "tsc": "tsc --project ./tsconfig.json",
+    "prettier-all": "prettier --write 'src/**/*.+(ts|tsx|js|css|json)'",
+    "precompile": "npm run prettier-all && npm run eslint && npm run clean",
+    "compile": "npm run tsc",
+    "pretest": "npm run compile",
+    "test": "echo \"Info: No test specified\"",
+    "build": "npm run test",
+    "postbuild": "rimraf  dist/**/spec dist/**/*.spec.js",
+    "debug": "cross-var node --inspect-brk=0.0.0.0:${DEBUG_PORT} --require source-map-support/register ./dist/main.js",
+    "profile": "node --prof ./dist/index.js"
+  },
+  "author": "ayusharora1778@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "@sinclair/typebox": "^0.32.15",
+    "axios": "^1.6.7",
+    "kafkajs": "^2.2.4",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "@typescript-eslint/parser": "^7.4.0",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^18.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-prettier": "^5.1.3"
+  }
+}
