@@ -4,4 +4,5 @@ export declare class Subscriber {
     kafkaClient: KafkaClient;
     constructor(config: ISubscriberConfig);
     start: ISubscriberStartFn;
+    disconnect: () => Promise<void>;
 }

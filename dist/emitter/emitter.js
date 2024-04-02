@@ -23,5 +23,8 @@ class Emitter {
             throw new Error(`unable to emit event :: ${err}`);
         }
     };
+    disconnect = async () => {
+        await this.kafkaClient.disconnect();
+    };
 }
 exports.Emitter = Emitter;

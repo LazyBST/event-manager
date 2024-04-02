@@ -27,4 +27,5 @@ export declare class AutomationEmitter {
     };
     isValidAutomationEvent: (event: TAutomationEvent) => Promise<boolean>;
     emitEvent: (event: TAutomationEvent, topic?: string) => Promise<void>;
+    disconnect: () => Promise<void>;
 }

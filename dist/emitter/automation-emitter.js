@@ -46,5 +46,8 @@ class AutomationEmitter {
             });
         }
     };
+    disconnect = async () => {
+        await this.emitter.disconnect();
+    };
 }
 exports.AutomationEmitter = AutomationEmitter;

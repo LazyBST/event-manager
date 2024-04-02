@@ -10,5 +10,8 @@ class Subscriber {
     start = async (topic, groupId, msgHandler) => {
         await this.kafkaClient.initConsumer(topic, groupId, msgHandler);
     };
+    disconnect = async () => {
+        await this.kafkaClient.disconnect();
+    };
 }
 exports.Subscriber = Subscriber;
