@@ -22,7 +22,7 @@ export declare class AutomationEmitter {
                 };
             };
         };
-        trigger: import("../constants/common").AUTOMATION_TRIGGER;
+        trigger: import("..").AUTOMATION_TRIGGER;
         companyCode: string;
     };
     isValidAutomationEvent: (event: TAutomationEvent) => Promise<boolean>;

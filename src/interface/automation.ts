@@ -1,4 +1,4 @@
-import { AUTOMATION_TRIGGER } from '../constants/common'
+import { AUTOMATION_TRIGGER } from '../constants'
 
 export interface ICompanyTrigger {
   companyCode: string

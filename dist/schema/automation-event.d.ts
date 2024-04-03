@@ -1,4 +1,4 @@
-import { AUTOMATION_TRIGGER } from '../constants/common';
+import { AUTOMATION_TRIGGER } from '../constants';
 export declare const AutomationEventSchema: import("@sinclair/typebox").TObject<{
     ctx: import("@sinclair/typebox").TObject<{
         headers: import("@sinclair/typebox").TObject<{

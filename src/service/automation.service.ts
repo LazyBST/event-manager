@@ -2,7 +2,7 @@ import { isNil } from 'lodash'
 import { GetAutomationResponse } from '../interface/automation'
 import { httpClient } from '../utils/http-client'
 import { logger } from '../utils/logger'
-import { AUTOMATION_TRIGGER } from '../constants/common'
+import { AUTOMATION_TRIGGER } from '../constants'
 
 // TODO: missing env should fail while loading config module
 const AUTOMATION_SVC_URL = process.env.AUTOMATION_SVC_URL as string

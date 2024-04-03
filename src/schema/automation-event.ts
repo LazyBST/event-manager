@@ -1,5 +1,5 @@
 import { Type } from '@sinclair/typebox'
-import { AUTOMATION_TRIGGER } from '../constants/common'
+import { AUTOMATION_TRIGGER } from '../constants'
 
 const IHeaders = Type.Object({
   authToken: Type.String(),

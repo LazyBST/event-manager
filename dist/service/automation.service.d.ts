@@ -1,2 +1,2 @@
-import { AUTOMATION_TRIGGER } from '../constants/common';
+import { AUTOMATION_TRIGGER } from '../constants';
 export declare const getTriggersForCompany: (companyCode: string) => Promise<AUTOMATION_TRIGGER[]>;
