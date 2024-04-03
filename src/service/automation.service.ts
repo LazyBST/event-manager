@@ -5,15 +5,15 @@ import { logger } from '../utils/logger'
 import { AUTOMATION_TRIGGER } from '../constants'
 
 // TODO: missing env should fail while loading config module
-const AUTOMATION_SVC_URL = process.env.AUTOMATION_SVC_URL as string
+const AUTOMATION_SVC_URI = process.env.AUTOMATION_SVC_URI as string
 
 export const getTriggersForCompany = async (
   companyCode: string
 ): Promise<AUTOMATION_TRIGGER[]> => {
   try {
-    console.log({ AUTOMATION_SVC_URL })
+    console.log({ AUTOMATION_SVC_URI })
     const resp = await httpClient.get<GetAutomationResponse>(
-      `${AUTOMATION_SVC_URL}/triggers?companyCode=${companyCode}`
+      `${AUTOMATION_SVC_URI}/triggers?companyCode=${companyCode}`
     )
     const status = resp.status
 

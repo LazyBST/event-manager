@@ -5,11 +5,11 @@ const lodash_1 = require("lodash");
 const http_client_1 = require("../utils/http-client");
 const logger_1 = require("../utils/logger");
 // TODO: missing env should fail while loading config module
-const AUTOMATION_SVC_URL = process.env.AUTOMATION_SVC_URL;
+const AUTOMATION_SVC_URI = process.env.AUTOMATION_SVC_URI;
 const getTriggersForCompany = async (companyCode) => {
     try {
-        console.log({ AUTOMATION_SVC_URL });
-        const resp = await http_client_1.httpClient.get(`${AUTOMATION_SVC_URL}/triggers?companyCode=${companyCode}`);
+        console.log({ AUTOMATION_SVC_URI });
+        const resp = await http_client_1.httpClient.get(`${AUTOMATION_SVC_URI}/triggers?companyCode=${companyCode}`);
         const status = resp.status;
         if (status !== 200) {
             throw new Error('unable to fetch accpeted trigers of company: ' + companyCode);
