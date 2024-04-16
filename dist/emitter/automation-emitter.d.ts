@@ -4,11 +4,6 @@ export declare class AutomationEmitter {
     private emitter;
     constructor(config: IKafkaConfig);
     isValidEventSchema: (event: TAutomationEvent) => {
-        ctx: {
-            headers: {
-                authToken: string;
-            };
-        };
         user: {
             gid?: string | undefined;
             userType: string;
@@ -27,5 +22,6 @@ export declare class AutomationEmitter {
     };
     isValidAutomationEvent: (event: TAutomationEvent) => Promise<boolean>;
     emitEvent: (event: TAutomationEvent, topic?: string) => Promise<void>;
+    emitDlqEvent: (event: any, error: any, topic?: string) => Promise<void>;
     disconnect: () => Promise<void>;
 }

@@ -1,10 +1,5 @@
 import { AUTOMATION_TRIGGER } from '../constants';
 export declare const AutomationEventSchema: import("@sinclair/typebox").TObject<{
-    ctx: import("@sinclair/typebox").TObject<{
-        headers: import("@sinclair/typebox").TObject<{
-            authToken: import("@sinclair/typebox").TString;
-        }>;
-    }>;
     user: import("@sinclair/typebox").TObject<{
         userType: import("@sinclair/typebox").TString;
         phoneNumber: import("@sinclair/typebox").TString;

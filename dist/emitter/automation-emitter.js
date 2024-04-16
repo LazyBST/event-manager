@@ -34,16 +34,25 @@ class AutomationEmitter {
             if ((0, lodash_1.isNil)(kfTopic)) {
                 throw new Error('missing AUTOMATION_KF_TOPIC env variable, no sutiable kafka topic found for automation events');
             }
-            await this.emitter.emitEvents(kfTopic, [event]);
+            await this.emitter.emitEvents(kfTopic, [{ event }]);
         }
         catch (err) {
-            const kfTopic = common_1.eventTypeTopicMap[common_1.EventType.AUTOMATION_DLQ_EVENT] ||
-                common_1.AUTOMATION_DLQ_DEFAULT_TOPIC;
-            await this.emitter
-                .emitEvents(kfTopic, [event])
-                .catch((error) => {
-                throw new Error(error);
-            });
+            await this.emitDlqEvent(event, err);
+        }
+    };
+    emitDlqEvent = async (event, error, topic) => {
+        try {
+            if ((0, lodash_1.isEmpty)(event)) {
+                throw new Error(`invalid event`);
+            }
+            const kfTopic = topic || common_1.eventTypeTopicMap[common_1.EventType.AUTOMATION_DLQ_EVENT];
+            if ((0, lodash_1.isNil)(kfTopic)) {
+                throw new Error('missing AUTOMATION_DLQ_TOPIC env, no sutiable kafka topic found for automation error events');
+            }
+            await this.emitter.emitEvents(kfTopic, [{ kfHeader: error, event }]);
+        }
+        catch (err) {
+            throw new Error(err);
         }
     };
     disconnect = async () => {

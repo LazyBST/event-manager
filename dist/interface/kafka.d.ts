@@ -12,3 +12,7 @@ export interface IKafkaConfig {
         password: string;
     };
 }
+export interface IKafkaEvent<IEvent> {
+    kfHeader?: Record<string, any>;
+    event: IEvent;
+}

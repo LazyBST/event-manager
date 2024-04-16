@@ -3,12 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AutomationEventSchema = void 0;
 const typebox_1 = require("@sinclair/typebox");
 const constants_1 = require("../constants");
-const IHeaders = typebox_1.Type.Object({
-    authToken: typebox_1.Type.String(),
-});
-const IRequestContext = typebox_1.Type.Object({
-    headers: IHeaders,
-});
 const IUserOtherDetials = typebox_1.Type.Object({
     custom: typebox_1.Type.Record(typebox_1.Type.String(), typebox_1.Type.Object({
         valueId: typebox_1.Type.String(),
@@ -22,7 +16,6 @@ const IClusterUser = typebox_1.Type.Object({
     otherDetails: IUserOtherDetials,
 });
 exports.AutomationEventSchema = typebox_1.Type.Object({
-    ctx: IRequestContext,
     user: IClusterUser,
     trigger: typebox_1.Type.Enum(constants_1.AUTOMATION_TRIGGER),
     companyCode: typebox_1.Type.String(),

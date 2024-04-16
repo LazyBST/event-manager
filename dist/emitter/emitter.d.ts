@@ -1,7 +1,7 @@
-import { IKafkaConfig } from '../interface/kafka';
+import { IKafkaConfig, IKafkaEvent } from '../interface/kafka';
 export declare class Emitter {
     private kafkaClient;
     constructor(config: IKafkaConfig);
-    emitEvents: <IEvent>(kfTopic: string, events: IEvent[]) => Promise<void>;
+    emitEvents: <IEvent>(kfTopic: string, events: IKafkaEvent<IEvent>[]) => Promise<void>;
     disconnect: () => Promise<void>;
 }
