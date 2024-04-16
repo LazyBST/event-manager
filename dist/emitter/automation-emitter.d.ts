@@ -1,8 +1,8 @@
-import { IKafkaConfig } from '../interface/kafka';
 import { TAutomationEvent } from '../type/automation';
+import { IEmitterConfig } from '../interface/emitter';
 export declare class AutomationEmitter {
     private emitter;
-    constructor(config: IKafkaConfig);
+    constructor(config: IEmitterConfig);
     isValidEventSchema: (event: TAutomationEvent) => {
         user: {
             gid?: string | undefined;
