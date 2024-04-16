@@ -1,16 +1,16 @@
 import { isEmpty, isNil } from 'lodash'
 import { EventType, eventTypeTopicMap } from '../constants/common'
-import { IKafkaConfig } from '../interface/kafka'
 import { getTriggersForCompany } from '../service/automation.service'
 import { Emitter } from './emitter'
 import { TAutomationEvent } from '../type/automation'
 import { validatorFactory } from '../utils/schema-validator'
 import { AutomationEventSchema } from '../schema/automation-event'
+import { IEmitterConfig } from '../interface/emitter'
 
 export class AutomationEmitter {
   private emitter: Emitter
 
-  constructor(config: IKafkaConfig) {
+  constructor(config: IEmitterConfig) {
     this.emitter = new Emitter(config)
   }
 
