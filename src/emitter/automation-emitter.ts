@@ -1,9 +1,5 @@
-import { isNil } from 'lodash'
-import {
-  AUTOMATION_DLQ_DEFAULT_TOPIC,
-  EventType,
-  eventTypeTopicMap,
-} from '../constants/common'
+import { isEmpty, isNil } from 'lodash'
+import { EventType, eventTypeTopicMap } from '../constants/common'
 import { IKafkaConfig } from '../interface/kafka'
 import { getTriggersForCompany } from '../service/automation.service'
 import { Emitter } from './emitter'
@@ -56,16 +52,28 @@ export class AutomationEmitter {
         )
       }
 
-      await this.emitter.emitEvents<TAutomationEvent>(kfTopic, [event])
+      await this.emitter.emitEvents<TAutomationEvent>(kfTopic, [{ event }])
     } catch (err) {
-      const kfTopic =
-        eventTypeTopicMap[EventType.AUTOMATION_DLQ_EVENT] ||
-        AUTOMATION_DLQ_DEFAULT_TOPIC
-      await this.emitter
-        .emitEvents<TAutomationEvent>(kfTopic, [event])
-        .catch((error) => {
-          throw new Error(error)
-        })
+      await this.emitDlqEvent(event, err)
+    }
+  }
+
+  emitDlqEvent = async (event: any, error: any, topic?: string) => {
+    try {
+      if (isEmpty(event)) {
+        throw new Error(`invalid event`)
+      }
+
+      const kfTopic = topic || eventTypeTopicMap[EventType.AUTOMATION_DLQ_EVENT]
+      if (isNil(kfTopic)) {
+        throw new Error(
+          'missing AUTOMATION_DLQ_TOPIC env, no sutiable kafka topic found for automation error events'
+        )
+      }
+
+      await this.emitter.emitEvents(kfTopic, [{ kfHeader: error, event }])
+    } catch (err: any) {
+      throw new Error(err)
     }
   }
 
