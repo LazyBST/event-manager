@@ -38,6 +38,8 @@ export class Emitter {
         header,
       }))
 
+      console.log('kafkaEvents', kafkaEvents)
+
       await this.kafkaClient.emitEventsToTopic(kfTopic, kafkaEvents)
     } catch (err) {
       throw new Error(`unable to emit event :: ${err}`)
