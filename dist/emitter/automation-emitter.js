@@ -37,7 +37,10 @@ class AutomationEmitter {
             await this.emitter.emitEvents(kfTopic, [{ event }]);
         }
         catch (err) {
-            await this.emitDlqEvent(event, err);
+            const stringifiedErr = JSON.stringify(err || 'unknown error');
+            await this.emitDlqEvent(event, {
+                error: stringifiedErr,
+            });
         }
     };
     emitDlqEvent = async (event, error, topic) => {

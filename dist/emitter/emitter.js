@@ -15,22 +15,25 @@ class Emitter {
             }
             const stringifiedEvents = events.map((event) => {
                 const { event: msg, kfHeader } = event;
-                let header;
-                if (!(0, lodash_1.isEmpty)(kfHeader)) {
-                    header = JSON.stringify(kfHeader);
-                }
                 console.log({ msg: JSON.stringify(msg) });
                 return {
                     msg: JSON.stringify(msg),
-                    header,
+                    headers: kfHeader,
                 };
             });
-            const kafkaEvents = stringifiedEvents.map(({ msg, header }) => ({
+            const kafkaEvents = stringifiedEvents.map(({ msg, headers }) => ({
                 value: msg,
-                header,
+                headers,
             }));
             console.log('kafkaEvents', kafkaEvents);
-            await this.kafkaClient.emitEventsToTopic(kfTopic, kafkaEvents);
+            await this.kafkaClient.emitEventsToTopic(kfTopic, [
+                {
+                    value: '',
+                    headers: {
+                        err: '',
+                    },
+                },
+            ]);
         }
         catch (err) {
             throw new Error(`unable to emit event :: ${err}`);

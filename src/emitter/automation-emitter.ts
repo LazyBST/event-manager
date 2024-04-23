@@ -54,11 +54,19 @@ export class AutomationEmitter {
 
       await this.emitter.emitEvents<TAutomationEvent>(kfTopic, [{ event }])
     } catch (err) {
-      await this.emitDlqEvent(event, err)
+      const stringifiedErr = JSON.stringify(err || 'unknown error')
+
+      await this.emitDlqEvent(event, {
+        error: stringifiedErr,
+      })
     }
   }
 
-  emitDlqEvent = async (event: any, error: any, topic?: string) => {
+  emitDlqEvent = async (
+    event: any,
+    error: Record<string, any>,
+    topic?: string
+  ) => {
     try {
       if (isEmpty(event)) {
         throw new Error(`invalid event`)

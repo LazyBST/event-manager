@@ -22,6 +22,6 @@ export declare class AutomationEmitter {
     };
     isValidAutomationEvent: (event: TAutomationEvent) => Promise<boolean>;
     emitEvent: (event: TAutomationEvent, topic?: string) => Promise<void>;
-    emitDlqEvent: (event: any, error: any, topic?: string) => Promise<void>;
+    emitDlqEvent: (event: any, error: Record<string, any>, topic?: string) => Promise<void>;
     disconnect: () => Promise<void>;
 }
