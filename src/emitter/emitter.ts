@@ -19,16 +19,17 @@ export class Emitter {
       }
 
       const stringifiedEvents = events.map((event) => {
-        const kfHeader = event?.kfHeader
+        const { event: msg, kfHeader } = event
         let header
 
         if (!isEmpty(kfHeader)) {
           header = JSON.stringify(kfHeader)
-          delete event?.kfHeader
         }
 
+        console.log({ msg: JSON.stringify(msg) })
+
         return {
-          msg: JSON.stringify(event),
+          msg: JSON.stringify(msg),
           header,
         }
       })
