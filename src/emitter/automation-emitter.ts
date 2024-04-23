@@ -68,10 +68,6 @@ export class AutomationEmitter {
     topic?: string
   ) => {
     try {
-      if (isEmpty(event)) {
-        throw new Error(`invalid event`)
-      }
-
       const kfTopic = topic || eventTypeTopicMap[EventType.AUTOMATION_DLQ_EVENT]
       if (isNil(kfTopic)) {
         throw new Error(
