@@ -26,14 +26,7 @@ class Emitter {
                 headers,
             }));
             console.log('kafkaEvents', kafkaEvents);
-            await this.kafkaClient.emitEventsToTopic(kfTopic, [
-                {
-                    value: '',
-                    headers: {
-                        err: '',
-                    },
-                },
-            ]);
+            await this.kafkaClient.emitEventsToTopic(kfTopic, kafkaEvents);
         }
         catch (err) {
             throw new Error(`unable to emit event :: ${err}`);
