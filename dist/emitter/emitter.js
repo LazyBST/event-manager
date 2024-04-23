@@ -14,14 +14,14 @@ class Emitter {
                 throw new Error('invalid kafka topic :: ' + kfTopic);
             }
             const stringifiedEvents = events.map((event) => {
-                const kfHeader = event?.kfHeader;
+                const { event: msg, kfHeader } = event;
                 let header;
                 if (!(0, lodash_1.isEmpty)(kfHeader)) {
                     header = JSON.stringify(kfHeader);
-                    delete event?.kfHeader;
                 }
+                console.log({ msg: JSON.stringify(msg) });
                 return {
-                    msg: JSON.stringify(event),
+                    msg: JSON.stringify(msg),
                     header,
                 };
             });
@@ -29,6 +29,7 @@ class Emitter {
                 value: msg,
                 header,
             }));
+            console.log('kafkaEvents', kafkaEvents);
             await this.kafkaClient.emitEventsToTopic(kfTopic, kafkaEvents);
         }
         catch (err) {
