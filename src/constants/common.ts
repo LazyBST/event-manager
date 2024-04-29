@@ -1,7 +1,7 @@
 export const AUTOMATION_DLQ_DEFAULT_TOPIC = 'automation.events.dlq'
 
 const AUTOMATION_KF_TOPIC = process.env.AUTOMATION_KF_TOPIC
-const AUTOMATION_DLQ_TOPIC = process.env.AUTOMATION_KF_TOPIC
+const AUTOMATION_DLQ_TOPIC = process.env.AUTOMATION_DLQ_TOPIC
 
 export enum EventType {
   AUTOMATION_EVENT = 'AUTOMATION_EVENT',

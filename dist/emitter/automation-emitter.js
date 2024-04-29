@@ -12,12 +12,12 @@ class AutomationEmitter {
     constructor(config) {
         this.emitter = new emitter_1.Emitter(config);
     }
-    isValidEventSchema = (event) => {
+    validateEventSchema = (event) => {
         const schemaValidatory = (0, schema_validator_1.validatorFactory)(automation_event_1.AutomationEventSchema);
         return schemaValidatory.verify(event);
     };
     isValidAutomationEvent = async (event) => {
-        const validatedEvent = this.isValidEventSchema(event);
+        const validatedEvent = this.validateEventSchema(event);
         const acceptedTriggers = await (0, automation_service_1.getTriggersForCompany)(validatedEvent.companyCode);
         if (acceptedTriggers.includes(validatedEvent.trigger)) {
             return true;
@@ -37,7 +37,7 @@ class AutomationEmitter {
             await this.emitter.emitEvents(kfTopic, [{ event }]);
         }
         catch (err) {
-            const stringifiedErr = JSON.stringify(err || 'unknown error');
+            const stringifiedErr = `error emitting automation event :: ${err?.message || 'unknown error'}`;
             await this.emitDlqEvent(event, {
                 error: stringifiedErr,
             });

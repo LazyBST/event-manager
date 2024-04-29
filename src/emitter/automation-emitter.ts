@@ -14,7 +14,7 @@ export class AutomationEmitter {
     this.emitter = new Emitter(config)
   }
 
-  isValidEventSchema = (event: TAutomationEvent) => {
+  validateEventSchema = (event: TAutomationEvent) => {
     const schemaValidatory = validatorFactory<TAutomationEvent>(
       AutomationEventSchema
     )
@@ -25,7 +25,7 @@ export class AutomationEmitter {
   isValidAutomationEvent = async (
     event: TAutomationEvent
   ): Promise<boolean> => {
-    const validatedEvent = this.isValidEventSchema(event)
+    const validatedEvent = this.validateEventSchema(event)
 
     const acceptedTriggers = await getTriggersForCompany(
       validatedEvent.companyCode
@@ -53,8 +53,8 @@ export class AutomationEmitter {
       }
 
       await this.emitter.emitEvents<TAutomationEvent>(kfTopic, [{ event }])
-    } catch (err) {
-      const stringifiedErr = JSON.stringify(err || 'unknown error')
+    } catch (err: any) {
+      const stringifiedErr = `error emitting automation event :: ${err?.message || 'unknown error'}`
 
       await this.emitDlqEvent(event, {
         error: stringifiedErr,
@@ -64,7 +64,7 @@ export class AutomationEmitter {
 
   emitDlqEvent = async (
     event: any,
-    error: Record<string, any>,
+    error: Record<string, string>,
     topic?: string
   ) => {
     try {

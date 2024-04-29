@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.eventTypeTopicMap = exports.EventType = exports.AUTOMATION_DLQ_DEFAULT_TOPIC = void 0;
 exports.AUTOMATION_DLQ_DEFAULT_TOPIC = 'automation.events.dlq';
 const AUTOMATION_KF_TOPIC = process.env.AUTOMATION_KF_TOPIC;
-const AUTOMATION_DLQ_TOPIC = process.env.AUTOMATION_KF_TOPIC;
+const AUTOMATION_DLQ_TOPIC = process.env.AUTOMATION_DLQ_TOPIC;
 var EventType;
 (function (EventType) {
     EventType["AUTOMATION_EVENT"] = "AUTOMATION_EVENT";

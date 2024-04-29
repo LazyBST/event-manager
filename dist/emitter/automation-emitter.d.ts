@@ -3,7 +3,7 @@ import { IEmitterConfig } from '../interface/emitter';
 export declare class AutomationEmitter {
     private emitter;
     constructor(config: IEmitterConfig);
-    isValidEventSchema: (event: TAutomationEvent) => {
+    validateEventSchema: (event: TAutomationEvent) => {
         user: {
             gid?: string | undefined;
             userType: string;
@@ -22,6 +22,6 @@ export declare class AutomationEmitter {
     };
     isValidAutomationEvent: (event: TAutomationEvent) => Promise<boolean>;
     emitEvent: (event: TAutomationEvent, topic?: string) => Promise<void>;
-    emitDlqEvent: (event: any, error: Record<string, any>, topic?: string) => Promise<void>;
+    emitDlqEvent: (event: any, error: Record<string, string>, topic?: string) => Promise<void>;
     disconnect: () => Promise<void>;
 }

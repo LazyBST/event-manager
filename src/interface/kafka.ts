@@ -16,6 +16,6 @@ export interface IKafkaConfig {
 }
 
 export interface IKafkaEvent<IEvent> {
-  kfHeader?: Record<string, any>
+  kfHeader?: Record<string, string>
   event: IEvent
 }
