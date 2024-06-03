@@ -5,8 +5,8 @@ const IUserOtherDetials = Type.Object({
   custom: Type.Record(
     Type.String(),
     Type.Object({
-      valueId: Type.String(),
-      value: Type.String(),
+      valueId: Type.Optional(Type.String()),
+      value: Type.Optional(Type.String()),
     })
   ),
 })
