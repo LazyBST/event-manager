@@ -5,8 +5,8 @@ const typebox_1 = require("@sinclair/typebox");
 const constants_1 = require("../constants");
 const IUserOtherDetials = typebox_1.Type.Object({
     custom: typebox_1.Type.Record(typebox_1.Type.String(), typebox_1.Type.Object({
-        valueId: typebox_1.Type.String(),
-        value: typebox_1.Type.String(),
+        valueId: typebox_1.Type.Optional(typebox_1.Type.String()),
+        value: typebox_1.Type.Optional(typebox_1.Type.String()),
     })),
 });
 const IClusterUser = typebox_1.Type.Object({

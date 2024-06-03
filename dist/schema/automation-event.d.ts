@@ -6,8 +6,8 @@ export declare const AutomationEventSchema: import("@sinclair/typebox").TObject<
         gid: import("@sinclair/typebox").TOptional<import("@sinclair/typebox").TString>;
         otherDetails: import("@sinclair/typebox").TObject<{
             custom: import("@sinclair/typebox").TRecord<import("@sinclair/typebox").TString, import("@sinclair/typebox").TObject<{
-                valueId: import("@sinclair/typebox").TString;
-                value: import("@sinclair/typebox").TString;
+                valueId: import("@sinclair/typebox").TOptional<import("@sinclair/typebox").TString>;
+                value: import("@sinclair/typebox").TOptional<import("@sinclair/typebox").TString>;
             }>>;
         }>;
     }>;

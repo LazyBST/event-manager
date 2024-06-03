@@ -11,8 +11,8 @@ export declare class AutomationEmitter {
             otherDetails: {
                 custom: {
                     [x: string]: {
-                        valueId: string;
-                        value: string;
+                        valueId?: string | undefined;
+                        value?: string | undefined;
                     };
                 };
             };
